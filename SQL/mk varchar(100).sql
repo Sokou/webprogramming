@@ -1,0 +1,13 @@
+SELECT TOP (1000) [taiKhoan]
+      ,[matKhau]
+      ,[hoDem]
+      ,[tenTV]
+      ,[ngaysinh]
+      ,[gioiTinh]
+      ,[soDT]
+      ,[email]
+      ,[diaChi]
+      ,[trangThai]
+      ,[ghiChu]
+  FROM [ShopOnline_Demo].[dbo].[TaiKhoan]
+  alter table taiKhoan alter column matKhau varchar(100)
