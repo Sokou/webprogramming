@@ -1,0 +1,9 @@
+﻿@using DACuoiKy.Models;
+@{
+    TaiKhoan x = (TaiKhoan)Session["TtDangNhap"];
+    if (x == null)
+    {
+        Response.Redirect("~/Login");
+    }
+    Layout = "~/Areas/PrivatePages/Views/Shared/_Layout.cshtml";
+}

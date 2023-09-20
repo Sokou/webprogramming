@@ -1,0 +1,66 @@
+﻿@using DACuoiKy.Models;
+@model DACuoiKy.Models.DonHang
+@{
+    ViewBag.Title = "Index";
+    List<DonHang> donhang = Common.getDonHang().ToList<DonHang>();
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Đơn hàng mới tạo</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Danh sách các đơn hàng</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Số đơn hàng</th>
+                                <th>Tên khách hàng</th>
+                                <th>Ngày giao</th>
+                                <th>Địa chỉ</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ 
+                                int dem = 1;
+                            } 
+                            @foreach (DonHang h in donhang)
+                            {
+
+                                <tr>
+                                    <td>@dem</td>
+                                    <td>@h.soDH</td>
+                                    <td>@Common.GetKhachHangs(1).Where(m=>m.maKH==h.maKH).ToList().First().tenKH</td>
+                                    <td>23/12/2021</td>
+                                    <td>113 Trần Quốc Hào, Q.3, TP. Hồ Chí Minh</td>
+                                    <td>1.250.000</td>
+                                </tr>
+                                dem++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</section>
+

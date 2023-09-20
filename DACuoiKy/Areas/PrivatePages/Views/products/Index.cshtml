@@ -1,0 +1,48 @@
+﻿@using DACuoiKy.Models;
+@model DACuoiKy.Models.SanPham
+@{
+    ViewBag.Title = "Index";
+    List<SanPham> sp = Common.getProducts().ToList<SanPham>();
+
+}
+
+<style>
+    button {
+        margin-top: 40px;
+        margin-left: 120px;
+        height: 40px;
+        width: 80px;
+    }
+</style>
+
+<div class="card-header">
+    <h3 class="card-title">Các sản phẩm đang kinh doanh trên hệ thống</h3>
+</div>
+<div class="card-body">
+    <div class="row">
+        @foreach (SanPham h in sp)
+        {
+            <div class="col-xl-4 col-lg-4 col-md-6" style="margin-bottom:15px;">
+                
+                <div class="position-relative p-5 bg-gray">
+                    <div class="ribbon-wrapper">
+                    </div>
+                    @h.tenSP<br>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <p style="font-size: 12px;">
+                                @h.nhaSanXuat
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <img style="width: 170px; height: 150px;margin-left:10px; margin-top:20px;" src="@h.hinhDD" />
+                        </div>
+                    </div>
+                        <button class="btn btn-danger" title="Xóa bài viết">Xóa</button>
+                </div>
+                </div>
+            
+        }
+
+    </div>
+</div>

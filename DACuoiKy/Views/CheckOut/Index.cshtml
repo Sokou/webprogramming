@@ -1,0 +1,147 @@
+﻿@model DACuoiKy.Models.KhachHang
+@using DACuoiKy.Models;
+@{
+    ViewBag.Title = "Index";
+    CartShop x = ViewData["Cart"] as CartShop;
+}
+
+<link href="~/Content/cart.css" rel="stylesheet" />
+
+<div class="bradcam_area breadcam_bg overlay2">
+    <h3>Thanh toán</h3>
+</div>
+<section class="blog_area section-padding">
+    <div class="container">
+        <div class="shopper-infomations">
+            @using (Html.BeginForm("SaveToDataBase", "CheckOut", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="shopper-info">
+                            <p>Thông tin khách hàng</p>
+                            <div class="form-group">
+                                <label for="hoTen">Họ tên khách hàng</label>
+                                @Html.TextBoxFor(m => m.tenKH, new { @class = "form-control", @placehoder = "Dislay Name" })
+                            </div>
+                            <div class="form-group">
+                                <label class="radio-inline">@Html.RadioButtonFor(m => m.gioiTinh, true, new { @name = "gioiTinh" })Nam</label>
+                                <label class="radio-inline">@Html.RadioButton("gioiTinh", false)Nữ</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="ngaySinh">Ngày sinh</label>
+                                @Html.TextBoxFor(m => m.ngaySinh, new { @class = "form-control", @type = "date" })
+                            </div>
+                            <div class="form-group">
+                                <a href="@Url.Action("Index","CartShop")" class="btn btn-default">&lt;&lt;Quay lại giỏ hàng</a>
+                                <button class="btn btn-success">Thanh toán</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bill-to">
+                            <p>Thông tin liên lạc</p>
+                            <div class="form-one">
+                                <div class="form-group">
+                                    <label for="soDt">Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.soDT, new { @class = "form-control", @type = "tell", @placeholder = "Your phone number" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="mall">Email address</label>
+                                    @Html.TextBoxFor(m => m.email, new { @class = "form-control", @type = "email", @placeholder = "Email address" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="addr">Địa chỉ giao hàng</label>
+                                    @Html.TextBoxFor(m => m.diaChi, new { @class = "form-control", @type = "text", @placeholder = "Customer address" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="order-message">
+                            <p>Thông tin khách Hàng</p>
+                            <div class="form-group">
+                                <label for="ghiChu">Thông tin ghi chú</label>
+                                @Html.TextAreaFor(m => m.ghiChu, new
+                                {
+                                    @class = "form-control",
+                                    @placeholder = "Thông tin ghi chú cần ghi nhận",
+                                                                    @row = "8",
+                                    @style = "padding-bottom: 9px;"
+                                })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    <div class="container">
+        <hr />
+        <div class="row gach">
+            <div class="heading">
+                <h3>Thông tin chi tiết về sản phẩm đã chọn mua</h3>
+            </div>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Sản Phẩm</td>
+                        <td class="description"></td>
+                        <td class="price">Giá Bán</td>
+                        <td class="quantity">Số Lượng</td>
+                        <td class="Total">Thành Tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (CtDonHang i in x.SanPhamDC.Values)
+                        {
+                            <tr>
+                                <td class="cart_product">
+                                    <a href=""><img style="width:90px;" src="@Common.GetImageOfProductByID(i.maSP)" /></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="">@Common.GetNameOfProductByID(i.maSP)</a></h4>
+                                    <p>Product ID:@i.maSP</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>@String.Format("{0:#,##0 đ}", i.giaBan)</p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
+                                        <input class="cart_quantity_input" type="text" name="quantity" value="@i.soLuong" autocomplete="off" size="2" />
+                                    </div>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">@String.Format("{0:#,##0 đ}", x.moneyOfOneProduct(i))</p>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <div class="row gach">
+            <div class="heading">
+                <h3>Tổng trị giá - Thuế - Phí Giao Hàng - Tổng Tiền</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="total_area">
+                    <ul>
+                        <li>Tổng Trị Giá<span> @String.Format("{0:#,##0 đ}", x.totalOfCartShop()) </span></li>
+                        <li>Thuế VAT 10%<span> @String.Format("{0:#,##0 đ}", ((x.totalOfCartShop() * 10) / 100))</span></li>
+                        <li>Phí Giao Hàng<span>Free</span></li>
+                        <li>Tổng Thành Tiền<span> @String.Format("{0:#,##0 đ}", (x.totalOfCartShop() + (x.totalOfCartShop() * 10) / 100))</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

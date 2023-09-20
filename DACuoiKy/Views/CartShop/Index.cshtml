@@ -1,0 +1,96 @@
+﻿@using DACuoiKy.Models;
+@{
+    ViewBag.Title = "Index";
+    CartShop x = ViewData["Cart"] as CartShop;
+}
+<link href="~/Content/cart.css" rel="stylesheet" />
+
+<div class="bradcam_area breadcam_bg overlay2">
+    <h3>Giỏ hàng</h3>
+</div>
+<section class="blog_area section-padding">
+    <div class="container">
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Sản Phẩm</td>
+                        <td class="description"></td>
+                        <td class="price">Giá Bán</td>
+                        <td class="quantity">Số Lượng</td>
+                        <td class="Total">Thành Tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (CtDonHang i in x.SanPhamDC.Values)
+                        {
+                            <tr>
+                                <td class="cart_product">
+                                    <a href=""><img style="width:90px;" src="@Common.GetImageOfProductByID(i.maSP)" /></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="">@Common.GetNameOfProductByID(i.maSP)</a></h4>
+                                    <p>Product ID:@i.maSP</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>@String.Format("{0:#,##0 đ}", i.giaBan)</p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
+                                        <div>
+                                            @using (Html.BeginForm("Increase", "CartShop", FormMethod.Post, new { @style = "" }))
+                                            {
+                                                <input size="2" type="hidden" name="maSP" value="@i.maSP" />
+                                                <button class="cart_quantity_up" style=" border: 1px solid white; background-color: rgba(240,240,233,255); color: black; padding: 3px 3px;">+</button>
+                                            }
+                                            <input class="cart_quantity_input" type="text" name="quantity" value="@i.soLuong" autocomplete="off" size="2" />
+
+                                            @using (Html.BeginForm("Deccrease", "CartShop", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maSP" value="@i.maSP" />
+                                                <button class="cart_quantity_down">-</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">@String.Format("{0:#,##0 đ}",x.moneyOfOneProduct(i))</p>
+                                </td>
+                                <td class="cart_delete">
+                                    @using (Html.BeginForm("RemoveItem", "CartShop", FormMethod.Post))
+                                    {
+                                        <input type="hidden" name="maSP" value="@i.maSP" />
+                                        <button class="cart_quantity_delete"><i class="fa fa-times"></i></button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <hr/>
+        <div class="row gach">
+            <div class="heading">
+                <h3>Tổng trị giá - Thuế - Phí Giao Hàng - Tổng Tiền</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="total_area">
+                    <ul>
+                        <li>Tổng Trị Giá<span> @String.Format("{0:#,##0 đ}", x.totalOfCartShop() )</span></li>
+                        <li>Thuế VAT 10%<span> @String.Format("{0:#,##0 đ}", ((x.totalOfCartShop() * 10) / 100) )</span></li>
+                        <li>Phí Giao Hàng<span>Free</span></li>
+                        <li>Tổng Thành Tiền<span> @String.Format("{0:#,##0 đ}", (x.totalOfCartShop() + (x.totalOfCartShop() * 10) / 100) )</span></li>
+                    </ul>
+                    <a class="btn btn-default update" href="#">Cập Nhật Giỏ Hàng</a>
+                    <a class="btn btn-default check_out" href="@Url.Action("Index" , "CheckOut" )">Thanh Toán &gt;&gt;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

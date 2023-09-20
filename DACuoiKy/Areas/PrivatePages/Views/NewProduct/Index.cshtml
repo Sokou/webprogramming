@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thông Tin Sản Phẩm Mới</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">DataTables</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-4">
+            <!-- general form elements disabled -->
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">Hình Minh Họa Cho Sản Phẩm</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <img style="height:230px" src="~/images/sanPham/GVN AORUS X.jpg" />
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="">Upload</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <!-- /.card -->
+        <!-- right column -->
+        <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Thông Tin Chính</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên Sản Phẩm</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Tên Bài Viết Tối Đa 35 Ký Tự">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nội Dung Tóm Tắt</label>
+                            <textarea rows="5" class="form-control" placeholder="Nội Dung Tóm Tắt Không Được Quá 100 Chữ"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Giá Bán</label>
+                                    <input type="text" class="form-control" placeholder="Vnđ">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Đơn Vị Tính Select</label>
+                                    <select class="custom-select">
+                                        <option>Cái</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Thông Tin Khuyến Mãi</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Mail">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Ngày Đăng</label>
+                                    <input type="text" class="form-control" placeholder="Enter...">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Tài Khoản</label>
+                                    <input type="text" class="form-control" placeholder="Enter...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Kiểm Duyệt Bài Viết</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Số Lần Xem</label>
+                                    <input type="text" class="form-control" placeholder="125">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Giới Thiệu Chi Tiết Về Sản Phẩm
+                    </h3>
+                    <!-- tools box -->
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool btn-sm" data-card-widget="remove" data-toggle="tooltip"
+                                title="Remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /. tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body pad">
+                    <div class="mb-3">
+                        <textarea class="textarea" placeholder="Place some text here"
+                                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    </div>
+                    <p class="text-sm mb-0">
+                        Editor <a href="https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg">
+                            Documentation and license
+                            information.
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-->
+    </div>
+    <!-- ./row -->
+</section>
+<!-- /.content -->
+<div class="card-footer">
+    <button type="submit" class="btn btn-primary">Đăng Bài</button>
+</div>

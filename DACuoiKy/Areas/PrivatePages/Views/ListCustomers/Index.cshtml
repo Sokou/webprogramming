@@ -1,0 +1,64 @@
+﻿@using DACuoiKy.Models;
+@{
+    ViewBag.Title = "Index";
+    List<KhachHang> loai = ViewData["DsKhach"] as List<KhachHang>;
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách khách hàng</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Danh sách khách hàng</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Số điện thoại</th>
+                                <th>Tên khách hàng</th>
+                                <th>Giới tính</th>
+                                <th>Địa chỉ</th>
+                                <th>Số lần mua</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ 
+                                int dem = 1;
+                            }
+                            @foreach (KhachHang h in loai)
+                            {
+                                <tr>
+                                    <td>@dem</td>
+                                    <td>@h.soDT</td>
+                                    <td>@h.tenKH</td>
+                                    <td>@h.gioiTinh</td>
+                                    <td>@h.diaChi</td>
+                                    <td>@h.SoLanMua</td>
+                                    <td>@h.email</td>
+                                </tr>
+                                dem++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

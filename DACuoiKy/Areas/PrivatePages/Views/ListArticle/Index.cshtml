@@ -1,0 +1,76 @@
+﻿@using DACuoiKy.Models;
+@{
+    ViewBag.Title = "Index";
+    List<BaiViet> ds = ViewData["DanhSachBV"] as List<BaiViet>;
+}
+<style>
+    form {
+        display: inline;
+    }
+</style>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh Sách Bài Viết</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tên Bài Viết</th>
+                                <th>Ngày Đăng</th>
+                                <th>Tài Khoản</th>
+                                <th>Số Lần Đọc</th>
+                                <th>Lệnh - Công Cụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (BaiViet i in ds)
+                                {
+                                    <tr>
+                                        <td>
+                                            @i.tenBV
+                                        </td>
+                                        <td>@string.Format("{0: hh:mm [dd MMMM yyyy]}", i.ngayDang)</td>
+                                        <td>@i.TaiKhoan1.hoDem @i.TaiKhoan1.tenTV</td>
+                                        <td>@i.soLanDoc</td>
+                                        <td>
+                                            @using (Html.BeginForm("Active", "ListArticle", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maBaiViet" value="@i.maBV" />
+                                                <button class="btn btn-success" title="Cho phép hiển thị bài viết trên các trang công khai">@ViewBag.tdCuaNut</button>
+                                            }
+                                            <button class="btn btn-default" title="Cho phép sửa bài viết">Sửa nội dung</button>
+                                            @using (Html.BeginForm("Delete", "ListArticle", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maBaiViet" value="@i.maBV" />
+                                                <button class="btn btn-danger" title="Xóa bài viết">Xóa</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

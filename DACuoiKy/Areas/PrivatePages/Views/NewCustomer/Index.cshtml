@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="container-fluid">
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-8">
+        
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Thêm khách hàng mới</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputHoten1">Họ và Tên</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Họ tên ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputSodt1">Số điện thoại</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Số điện thoại ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputDiachi1">Địa chỉ</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Địa chỉ ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Email ...">
+                        </div>
+                        <div class="form-group">
+                            <label>Giới tính</label>
+                            <div class="row" data-toggle="buttons">
+                                <div class="col">
+                                    <label class="btn btn-outline-secondary">
+                                        Nam
+                                        <input type="radio" name="gioi-tinh" value="Nam" />
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <label class="btn btn-outline-secondary">
+                                        Nữ
+                                        <input type="radio" name="gioi-tinh" value="Nữ" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </form>
+            </div>
+            <!-- /.card -->
+        
+
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+    <div class="col-md-4">
+        <!-- general form elements disabled -->
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title">Bài viết</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <img src="~/images/news/1.png" />
+                <label for="exampleInputFile">Chọn tệp</label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Chọn tệp</label>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="">Tải lên</span>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Nhập</button>
+    </div>
+    </div>
+</div>
